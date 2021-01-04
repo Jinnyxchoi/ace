@@ -1,14 +1,19 @@
 import React, {Component} from 'react'
-import {newListThunk} from '../../store/todoStore'
+import {newListThunk, fetchLists} from '../../store/todoStore'
 import {connect} from 'react-redux'
+import {SingleTodo} from './SingleTodo'
 
 export class Todo extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       buttonClicked: false
     }
     this.handleClick = this.handleClick.bind(this)
+    // this.handleSubmit = this.handleSubmit.bind(this)
+  }
+  componentDidMount() {
+    this.props.loadingLists()
   }
   handleClick(evt) {
     evt.preventDefault()
@@ -16,27 +21,38 @@ export class Todo extends Component {
       buttonClicked: true
     })
   }
+  // handleSubmit(evt) {
+  //   evt.preventDefault()
+  //   this.setState({
+  //     buttonClicked: false,
+  //     listName: evt.target.listName.value,
+  //     description: evt.target.description.value,
+  //   })
+  //   this.props.post(this.state.listName, this.state.description)
+  // }
   render() {
+    let {todo} = this.props
+    console.log('todo', todo)
     return (
       <div>
-        <p>TODO LISTS HERE</p>
+        <p>TODO LISTS</p>
         <form onClick={this.handleClick}>
           <button type="submit">New List</button>
         </form>
         {this.state.buttonClicked ? (
           <div>
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.props.handleSubmit}>
               <div>
                 <label htmlFor="List Name">
                   <small>List Name</small>
                 </label>
-                <input name="List Name" type="text" />
+                <input name="listName" type="text" />
               </div>
               <div>
                 <label htmlFor="Description">
                   <small>Description</small>
                 </label>
-                <input name="Description" type="text" />
+                <input name="description" type="text" />
               </div>
               <button type="submit">Submit</button>
             </form>
@@ -44,11 +60,29 @@ export class Todo extends Component {
         ) : (
           <div> </div>
         )}
+        <div>{todo.map(each => <SingleTodo key={each.id} list={each} />)}</div>
       </div>
     )
   }
 }
-const mapDispatch = dispatch => ({
-  newList: listObj => dispatch(newListThunk(listObj))
+
+// const mapDispatch = (dispatch) => ({
+//   post: (name, description) => dispatch(newListThunk(name, description)),
+// })
+const mapState = state => ({
+  todo: state.todo
 })
-export default connect(null, mapDispatch)(Todo)
+
+const mapDispatch = dispatch => {
+  return {
+    handleSubmit(evt) {
+      evt.preventDefault()
+      let name = evt.target.listName.value
+      let description = evt.target.description.value
+
+      dispatch(newListThunk(name, description))
+    },
+    loadingLists: () => dispatch(fetchLists())
+  }
+}
+export default connect(mapState, mapDispatch)(Todo)
