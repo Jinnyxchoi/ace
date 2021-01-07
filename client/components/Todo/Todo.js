@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {newListThunk, fetchLists} from '../../store/todoStore'
 import {connect} from 'react-redux'
-import {SingleTodo} from './SingleTodo'
+import SingleTodo from './SingleTodo'
 
 export class Todo extends Component {
   constructor(props) {
@@ -60,7 +60,9 @@ export class Todo extends Component {
         ) : (
           <div> </div>
         )}
-        <div>{todo.map(each => <SingleTodo key={each.id} list={each} />)}</div>
+        <div className="all-todos">
+          {todo.map(each => <SingleTodo key={each.id} list={each} />)}
+        </div>
       </div>
     )
   }
