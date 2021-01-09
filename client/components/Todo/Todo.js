@@ -35,10 +35,12 @@ export class Todo extends Component {
     console.log('todo', todo)
     return (
       <div>
-        <p>TODO LISTS</p>
-        <form onClick={this.handleClick}>
-          <button type="submit">New List</button>
-        </form>
+        <div id="todo-lists">
+          <p>🌼YOUR TODO LISTS🌼</p>
+          <form onClick={this.handleClick}>
+            <button type="submit">Create New List</button>
+          </form>
+        </div>
         {this.state.buttonClicked ? (
           <div>
             <form onSubmit={this.props.handleSubmit}>
