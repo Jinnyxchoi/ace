@@ -21,10 +21,32 @@ form div {
 }
 
 .single-todo-list {
+  width: 150px;
   border-style: solid;
-  border-width: 5px;
-  padding: 50px;
+  border-width: 1px;
+  padding: 10px;
+  margin: 10px;
 }
 .all-todos {
   display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+  background-color: beige;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#name-of-list {
+  border-style: dotted;
+  border-color: brown;
+  padding: 5px;
+  text-align: center;
+}
+#todo-lists {
+  margin-bottom: 50px;
+  margin-left: 20px;
+}
+button {
+  border-radius: 12px;
 }

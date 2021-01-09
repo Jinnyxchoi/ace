@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import {fetchListItems} from '../../store/listItemsStore'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 // import SingleItem from './SingleItem'
 
 export default class SingleTodo extends Component {
@@ -8,10 +8,14 @@ export default class SingleTodo extends Component {
     // this.props.loadingListItems(this.props.list.id)
   }
   render() {
-    const {name, description, listItems} = this.props.list
+    const {id, name, description} = this.props.list
+    let listItems = this.props.list.listItems || []
     return (
       <div className="single-todo-list">
-        <p id="name-of-list">{name}</p>
+        <Link to={`/campuses/${id}`}>
+          <p id="name-of-list">{name}</p>
+        </Link>
+
         <p id="description-of-list">{description}</p>
         {listItems.map(item => <p key={item.id}>{item.todo}</p>)}
       </div>
