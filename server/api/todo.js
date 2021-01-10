@@ -16,12 +16,15 @@ router.get('/', async (req, res, next) => {
 })
 router.get('/:id', async (req, res, next) => {
   try {
-    const allItems = await ListItem.findAll({
+    const list = await List.findOne({
       where: {
-        listId: +req.params.id
+        id: +req.params.id
+      },
+      include: {
+        model: ListItem
       }
     })
-    res.json(allItems)
+    res.json(list)
   } catch (error) {
     next(error)
   }
@@ -30,6 +33,24 @@ router.post('/', async (req, res, next) => {
   try {
     const newList = await List.create(req.body)
     res.json(newList)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.post('/:id', async (req, res, next) => {
+  try {
+    console.log('in here')
+    await ListItem.create(req.body)
+    const list = await List.findOne({
+      where: {
+        id: +req.params.id
+      },
+      include: {
+        model: ListItem
+      }
+    })
+    res.json(list)
   } catch (error) {
     next(error)
   }

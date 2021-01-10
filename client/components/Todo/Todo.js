@@ -10,7 +10,7 @@ export class Todo extends Component {
       buttonClicked: false
     }
     this.handleClick = this.handleClick.bind(this)
-    // this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
   componentDidMount() {
     this.props.loadingLists()
@@ -20,6 +20,15 @@ export class Todo extends Component {
     this.setState({
       buttonClicked: true
     })
+  }
+  handleSubmit(evt) {
+    evt.preventDefault()
+    let name = evt.target.listName.value
+    let description = evt.target.description.value
+    this.setState({
+      buttonClicked: false
+    })
+    this.props.postList(name, description)
   }
   // handleSubmit(evt) {
   //   evt.preventDefault()
@@ -43,7 +52,7 @@ export class Todo extends Component {
         </div>
         {this.state.buttonClicked ? (
           <div>
-            <form onSubmit={this.props.handleSubmit}>
+            <form onSubmit={this.handleSubmit}>
               <div>
                 <label htmlFor="List Name">
                   <small>List Name</small>
@@ -79,14 +88,8 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => {
   return {
-    handleSubmit(evt) {
-      evt.preventDefault()
-      let name = evt.target.listName.value
-      let description = evt.target.description.value
-
-      dispatch(newListThunk(name, description))
-    },
-    loadingLists: () => dispatch(fetchLists())
+    loadingLists: () => dispatch(fetchLists()),
+    postList: (name, description) => dispatch(newListThunk(name, description))
   }
 }
 export default connect(mapState, mapDispatch)(Todo)
