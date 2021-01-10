@@ -4,8 +4,8 @@ import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import todo from './todoStore'
 import user from './user'
-
-const reducer = combineReducers({todo, user})
+import singleTodo from './singleTodoStore'
+const reducer = combineReducers({todo, user, singleTodo})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )

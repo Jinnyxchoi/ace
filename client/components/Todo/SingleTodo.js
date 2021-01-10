@@ -9,15 +9,14 @@ export default class SingleTodo extends Component {
   }
   render() {
     const {id, name, description} = this.props.list
-    let listItems = this.props.list.listItems || []
+
     return (
       <div className="single-todo-list">
-        <Link to={`/campuses/${id}`}>
+        <Link to={`/todo/${id}`}>
           <p id="name-of-list">{name}</p>
         </Link>
 
         <p id="description-of-list">{description}</p>
-        {listItems.map(item => <p key={item.id}>{item.todo}</p>)}
       </div>
     )
   }
