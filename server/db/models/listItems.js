@@ -6,6 +6,10 @@ const ListItem = db.define('listItem', {
     type: Sequelize.STRING,
     unique: false,
     allowNull: false
+  },
+  completed: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 })
 module.exports = ListItem

@@ -5,6 +5,7 @@ import axios from 'axios'
  */
 const GET_LIST = 'GET_LIST'
 const POST_TASK = 'POST_TASK'
+const UPDATE_COMPLETE = 'UPDATE_COMPLETE'
 /**
  * INITIAL STATE
  */
@@ -17,8 +18,12 @@ const getSingleList = list => ({
   type: GET_LIST,
   list
 })
-const postTask = list => ({
+const postTask = newTask => ({
   type: POST_TASK,
+  newTask
+})
+const completed = list => ({
+  type: UPDATE_COMPLETE,
   list
 })
 
@@ -52,6 +57,18 @@ export const postTaskThunk = (listID, task) => {
   }
 }
 
+export const updateCompletedThunk = (listID, taskID, complete) => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.put(`/api/todo/${listID}/${taskID}`, complete)
+      console.log('DATA', data)
+      dispatch(completed(data))
+    } catch (error) {
+      console.log('there was an error in postTaskThunk')
+    }
+  }
+}
+
 /**
  * REDUCER
  */
@@ -61,8 +78,34 @@ export default function(state = initialState, action) {
     case GET_LIST:
       return action.list
     case POST_TASK:
-      return action.list
+      return {
+        ...state,
+        listItems: [...state.listItems, action.newTask]
+      }
+    case UPDATE_COMPLETE:
+      return {
+        ...state,
+        listItems: state.listItems.map(list => {
+          if (list.id === action.list.id) {
+            return {...list, completed: action.list.completed}
+          } else {
+            return list
+          }
+        })
+      }
+
     default:
       return state
   }
 }
+
+// {
+//   ...state,
+//   listItems: state.listItems.map((list) => {
+//     if (list.id === action.list.id) {
+//       return {...list, completed: action.list.completed}
+//     }else{
+//       return list
+//     }
+//   }),
+// }

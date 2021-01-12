@@ -41,16 +41,32 @@ router.post('/', async (req, res, next) => {
 router.post('/:id', async (req, res, next) => {
   try {
     console.log('in here')
-    await ListItem.create(req.body)
-    const list = await List.findOne({
+    const newTask = await ListItem.create(req.body)
+    // const list = await List.findOne({
+    //   where: {
+    //     id: +req.params.id
+    //   },
+    //   include: {
+    //     model: ListItem
+    //   }
+    // })
+    res.json(newTask)
+  } catch (error) {
+    next(error)
+  }
+})
+router.put('/:listid/:taskid', async (req, res, next) => {
+  try {
+    console.log('req.body', req.body)
+    const task = await ListItem.findOne({
       where: {
-        id: +req.params.id
-      },
-      include: {
-        model: ListItem
+        id: +req.params.taskid,
+        listId: +req.params.listid
       }
     })
-    res.json(list)
+    task.completed = !task.completed
+    await task.save()
+    res.json(task)
   } catch (error) {
     next(error)
   }
