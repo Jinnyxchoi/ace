@@ -1,6 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchSingleList, postTaskThunk} from '../../store/singleTodoStore'
+import {
+  fetchSingleList,
+  postTaskThunk,
+  updateCompletedThunk
+} from '../../store/singleTodoStore'
 
 export class SingleViewTodo extends Component {
   constructor(props) {
@@ -10,9 +14,11 @@ export class SingleViewTodo extends Component {
     }
     this.handleClick = this.handleClick.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    // this.handleCheckbox = this.handleCheckbox.bind(this)
   }
   componentDidMount() {
     this.props.loadingList(this.props.match.params.listId)
+    console.log('PROPS', this.props.singleTodo)
   }
   handleClick(evt) {
     evt.preventDefault()
@@ -22,9 +28,7 @@ export class SingleViewTodo extends Component {
   }
   handleSubmit(evt) {
     evt.preventDefault()
-    console.log('going into handleSubmit')
     let task = evt.target.task.value
-    console.log('task', task)
     this.setState({
       buttonClicked: false
     })
@@ -34,6 +38,11 @@ export class SingleViewTodo extends Component {
     )
     this.props.postTask(this.props.match.params.listId, task)
   }
+  // handleCheckbox(evt) {
+  //   evt.preventDefault()
+  //   console.log('clicked')
+  // this.props.updateComplete(this.props.match.params.listId, )
+  // }
   render() {
     const singleTodo = this.props.singleTodo
     console.log('singleTodo', singleTodo)
@@ -59,9 +68,33 @@ export class SingleViewTodo extends Component {
           <div> </div>
         )}
         <div className="single-list">
-          <p id="single-list-name">{singleTodo.name}</p>
-          <p>{singleTodo.description}</p>
-          {listItems.map(item => <p key={item.id}>{item.todo}</p>)}
+          <div id="single-list-name">
+            {' '}
+            <p>{singleTodo.name}</p>
+            <p>{singleTodo.description}</p>
+          </div>
+
+          {listItems.map(item => (
+            <div key={item.id}>
+              <form>
+                <label>
+                  {item.todo}
+                  <input
+                    name="isGoing"
+                    type="checkbox"
+                    checked={item.completed}
+                    onChange={() =>
+                      this.props.updateComplete(
+                        this.props.match.params.listId,
+                        item.id,
+                        !item.completed
+                      )
+                    }
+                  />
+                </label>
+              </form>
+            </div>
+          ))}
         </div>
       </div>
     )
@@ -74,7 +107,9 @@ const mapState = state => ({
 const mapDispatch = dispatch => {
   return {
     loadingList: listID => dispatch(fetchSingleList(listID)),
-    postTask: (listID, task) => dispatch(postTaskThunk(listID, task))
+    postTask: (listID, task) => dispatch(postTaskThunk(listID, task)),
+    updateComplete: (listID, taskID, complete) =>
+      dispatch(updateCompletedThunk(listID, taskID, complete))
   }
 }
 export default connect(mapState, mapDispatch)(SingleViewTodo)
