@@ -75,7 +75,7 @@ export class SingleViewTodo extends Component {
           </div>
 
           {listItems.map(item => (
-            <div key={item.id}>
+            <div className="listItem" key={item.id}>
               <form>
                 <label>
                   {item.todo}

@@ -14,7 +14,9 @@ nav a {
   display: inline-block;
   margin: 1em;
 }
-
+.navbar {
+  background-color: #f7fe7d;
+}
 form div {
   margin: 1em;
   display: inline-block;
@@ -61,4 +63,18 @@ button {
   margin: auto;
   padding-top: 5px;
   padding-bottom: 5px;
+}
+.listItem {
+  margin-right: 500px;
+  margin-left: 500px;
+}
+.main {
+  display: flex;
+  justify-content: center;
+}
+.main-header {
+  font-size: 390%;
+}
+img {
+  width: 200px;
 }
