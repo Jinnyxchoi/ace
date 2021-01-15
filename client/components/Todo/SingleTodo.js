@@ -13,7 +13,7 @@ export default class SingleTodo extends Component {
     return (
       <div className="single-todo-list">
         <Link to={`/todo/${id}`}>
-          <p id="name-of-list">{name}</p>
+          <h4 id="name-of-list">{name}</h4>
         </Link>
 
         <p id="description-of-list">{description}</p>

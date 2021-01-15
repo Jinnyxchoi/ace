@@ -49,33 +49,34 @@ export class SingleViewTodo extends Component {
     const listItems = singleTodo.listItems || []
     return (
       <div>
-        <form onClick={this.handleClick}>
-          <button type="submit">Create New Task</button>
-        </form>
-        {this.state.buttonClicked ? (
-          <div>
-            <form onSubmit={this.handleSubmit}>
-              <div>
-                <label htmlFor="task">
-                  <small>New Task</small>
-                </label>
-                <input name="task" type="text" />
-              </div>
-              <button type="submit">Submit</button>
-            </form>
-          </div>
-        ) : (
-          <div> </div>
-        )}
         <div className="single-list">
           <div id="single-list-name">
             {' '}
-            <p>{singleTodo.name}</p>
+            <h2>{singleTodo.name}</h2>
             <p>{singleTodo.description}</p>
           </div>
-
+          <div className="create-task-button">
+            <form onClick={this.handleClick}>
+              <button type="submit">Create New Task</button>
+            </form>
+            {this.state.buttonClicked ? (
+              <div>
+                <form onSubmit={this.handleSubmit}>
+                  <div>
+                    <label htmlFor="task">
+                      <small>New Task</small>
+                    </label>
+                    <input name="task" type="text" />
+                  </div>
+                  <button type="submit">Submit</button>
+                </form>
+              </div>
+            ) : (
+              <div> </div>
+            )}
+          </div>
           {listItems.map(item => (
-            <div key={item.id}>
+            <div className="listItem" key={item.id}>
               <form>
                 <label>
                   {item.todo}
