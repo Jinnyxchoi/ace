@@ -45,7 +45,7 @@ export class Todo extends Component {
     return (
       <div>
         <div id="todo-lists">
-          <p>🌼YOUR TODO LISTS🌼</p>
+          <h2>🌼YOUR TO-DOs🌼</h2>
           <form onClick={this.handleClick}>
             <button type="submit">Create New List</button>
           </form>
