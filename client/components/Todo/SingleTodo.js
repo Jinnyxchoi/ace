@@ -11,7 +11,7 @@ export default class SingleTodo extends Component {
     const {id, name, description} = this.props.list
 
     return (
-      <div className="single-todo-list">
+      <div className="todo-list">
         <Link to={`/todo/${id}`}>
           <h4 id="name-of-list">{name}</h4>
         </Link>

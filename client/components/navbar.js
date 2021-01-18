@@ -12,6 +12,13 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
+          <a
+            href="https://github.com/Jinnyxchoi/ace"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            GitHub
+          </a>
           <Link to="/home">Home</Link>
           <a href="#" onClick={handleClick}>
             Logout
@@ -20,12 +27,18 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
+          <a
+            href="https://github.com/Jinnyxchoi/ace"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            GitHub
+          </a>
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
         </div>
       )}
     </nav>
-    <hr />
   </div>
 )
 

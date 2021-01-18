@@ -1,9 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: 'Montserrat', sans-serif;
 }
 
 a {
   text-decoration: none;
+}
+
+.auth {
+  display: flex;
+  justify-content: center;
+  font-weight: 900;
 }
 
 label {
@@ -15,8 +23,12 @@ nav a {
   margin: 1em;
 }
 .navbar {
+  display: flex;
+  justify-content: space-between;
   background-color: #f7fe7d;
+  font-weight: 900;
 }
+
 form div {
   margin: 1em;
   display: inline-block;
@@ -62,23 +74,52 @@ form div {
 button {
   border-radius: 12px;
 }
-.single-list {
+/* .single-list {
   text-align: center;
+  border-style: solid;
+  padding: 30px;
+  margin: 30px 300px;
+} */
+
+.single-list {
+  background-color: #fff;
+  text-align: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  position: relative;
+  overflow: hidden;
+  width: 600px;
+  max-width: 100%;
+  min-height: 480px;
+  margin-top: 30px;
+}
+.todo-list {
+  background-color: #fff;
+  text-align: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  position: relative;
+  overflow: hidden;
+  width: 300px;
+  max-width: 100%;
+  min-height: 200px;
+  margin: 15px;
+}
+.container {
+  display: flex;
+  justify-content: center;
 }
 #single-list-name {
-  border-style: dotted;
-  border-color: brown;
+  /* border-style: dotted;
+  border-color: peachpuff; */
   text-align: center;
   max-width: 500px;
   margin: auto;
-  margin-bottom: 10px;
-  padding-top: 5px;
   padding-bottom: 5px;
 }
-.listItem {
-  margin-right: 500px;
-  margin-left: 500px;
-}
+
 .main {
   display: flex;
   flex-flow: column;
@@ -89,6 +130,7 @@ button {
 }
 .main-header {
   font-size: 390%;
+  font-weight: 900;
   padding: 0px 200px;
 }
 img {
@@ -97,21 +139,32 @@ img {
 .main-description {
   font-size: x-large;
   padding: 0px 100px 0px 100px;
+  margin: 50px 80px;
 }
 
-#main-page-button {
-  background-color: #f7fe7d;
-  border: none;
-  color: black;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 20px;
+button {
+  border-radius: 20px;
+  border: 1px solid #ff4b2b;
+  background-color: #ff4b2b;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
 }
 .create-task-button {
   margin: 20px;
 }
 #main-page-image {
   width: 600px;
+}
+.quotes {
+  margin: 0 250px;
+}
+#demo {
+  padding: 15px;
+  height: fit-content;
+  margin-left: 5px;
 }
