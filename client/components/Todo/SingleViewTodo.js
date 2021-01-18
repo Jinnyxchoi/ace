@@ -48,7 +48,7 @@ export class SingleViewTodo extends Component {
     console.log('singleTodo', singleTodo)
     const listItems = singleTodo.listItems || []
     return (
-      <div>
+      <div className="container">
         <div className="single-list">
           <div id="single-list-name">
             {' '}
