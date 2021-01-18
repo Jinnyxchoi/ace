@@ -15,8 +15,11 @@ nav a {
   margin: 1em;
 }
 .navbar {
+  display: flex;
+  justify-content: space-between;
   background-color: #f7fe7d;
 }
+
 form div {
   margin: 1em;
   display: inline-block;
@@ -64,21 +67,19 @@ button {
 }
 .single-list {
   text-align: center;
+  border-style: solid;
+  padding: 30px;
+  margin: 30px 300px;
 }
 #single-list-name {
   border-style: dotted;
-  border-color: brown;
+  border-color: peachpuff;
   text-align: center;
   max-width: 500px;
   margin: auto;
-  margin-bottom: 10px;
-  padding-top: 5px;
   padding-bottom: 5px;
 }
-.listItem {
-  margin-right: 500px;
-  margin-left: 500px;
-}
+
 .main {
   display: flex;
   flex-flow: column;
@@ -88,7 +89,10 @@ button {
   justify-content: center;
 }
 .main-header {
+  font-family: 'Graphik', 'Helvetica Neue', helvetica, 'Apple Color Emoji',
+    arial, sans-serif;
   font-size: 390%;
+  font-weight: 900;
   padding: 0px 200px;
 }
 img {
@@ -108,6 +112,7 @@ img {
   text-decoration: none;
   display: inline-block;
   font-size: 20px;
+  font-weight: 900;
 }
 .create-task-button {
   margin: 20px;
