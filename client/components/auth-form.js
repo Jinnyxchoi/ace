@@ -11,8 +11,8 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div className="auth">
-      <div>
+    <div>
+      <div className="auth">
         <form onSubmit={handleSubmit} name={name}>
           <div>
             <label htmlFor="email">
@@ -30,11 +30,16 @@ const AuthForm = props => {
             <button id="signin" type="submit">
               {displayName}
             </button>
-            <button id="demo" type="submit">
-              Try Demo Login
-            </button>
           </div>
-          {error && error.response && <div> {error.response.data} </div>}
+
+          {error &&
+            error.response && <div> Please enter both email & password </div>}
+        </form>
+        <form className="demo-button">
+          {' '}
+          <button id="demo" type="submit">
+            Try Demo Login
+          </button>
         </form>
         <a href="/forgotpassword">Forgot Your Password?</a>
       </div>
@@ -70,8 +75,14 @@ const mapDispatch = dispatch => {
     handleSubmit(evt) {
       evt.preventDefault()
       const formName = evt.target.name
-      const email = evt.target.email.value
-      const password = evt.target.password.value
+      let email = evt.target.email.value
+      if (email.length === 0) {
+        email = null
+      }
+      let password = evt.target.password.value
+      if (password.length === 0) {
+        password = null
+      }
       dispatch(auth(email, password, formName))
     }
   }

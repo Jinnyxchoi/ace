@@ -168,3 +168,7 @@ button {
   height: fit-content;
   margin-left: 5px;
 }
+.demo-button {
+  padding-top: 15px;
+  margin-top: 5px;
+}
