@@ -82,6 +82,8 @@ button {
 } */
 
 .single-list {
+  display: flex;
+  flex-direction: column;
   background-color: #fff;
   text-align: center;
   align-items: center;
@@ -91,7 +93,7 @@ button {
   overflow: hidden;
   width: 600px;
   max-width: 100%;
-  min-height: 480px;
+  /* min-height: 480px; */
   margin-top: 30px;
 }
 .todo-list {
@@ -116,7 +118,7 @@ button {
   border-color: peachpuff; */
   text-align: center;
   max-width: 500px;
-  margin: auto;
+  margin-top: 15px;
   padding-bottom: 5px;
 }
 
@@ -175,4 +177,12 @@ button {
 .password {
   display: flex;
   justify-content: center;
+}
+.verify-email {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.delete-list {
+  margin: 30px;
 }

@@ -5,6 +5,7 @@ import {
   postTaskThunk,
   updateCompletedThunk
 } from '../../store/singleTodoStore'
+import {DeleteList} from '../index'
 
 export class SingleViewTodo extends Component {
   constructor(props) {
@@ -96,6 +97,7 @@ export class SingleViewTodo extends Component {
               </form>
             </div>
           ))}
+          <DeleteList />
         </div>
       </div>
     )

@@ -45,7 +45,7 @@ const AuthForm = props => {
         <br />
       </div>
       <div className="password">
-        <a href="/forgotpassword">Forgot Your Password?</a>
+        <a href="/forgotpassword">Forgot Password?</a>
       </div>
     </div>
   )
