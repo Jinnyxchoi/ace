@@ -13,7 +13,7 @@ export class Todo extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   componentDidMount() {
-    this.props.loadingLists()
+    this.props.loadingLists(this.props.user.id)
   }
   handleClick(evt) {
     evt.preventDefault()
@@ -28,7 +28,8 @@ export class Todo extends Component {
     this.setState({
       buttonClicked: false
     })
-    this.props.postList(name, description)
+    console.log('this is id', this.props.user.id)
+    this.props.postList(name, description, this.props.user.id)
   }
   // handleSubmit(evt) {
   //   evt.preventDefault()
@@ -41,7 +42,7 @@ export class Todo extends Component {
   // }
   render() {
     let {todo} = this.props
-    console.log('todo', todo)
+
     return (
       <div>
         <div id="todo-lists">
@@ -83,13 +84,15 @@ export class Todo extends Component {
 //   post: (name, description) => dispatch(newListThunk(name, description)),
 // })
 const mapState = state => ({
-  todo: state.todo
+  todo: state.todo,
+  user: state.user
 })
 
 const mapDispatch = dispatch => {
   return {
-    loadingLists: () => dispatch(fetchLists()),
-    postList: (name, description) => dispatch(newListThunk(name, description))
+    loadingLists: userID => dispatch(fetchLists(userID)),
+    postList: (name, description, userID) =>
+      dispatch(newListThunk(name, description, userID))
   }
 }
 export default connect(mapState, mapDispatch)(Todo)

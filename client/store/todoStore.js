@@ -23,13 +23,15 @@ const setLists = lists => ({
 /**
  * THUNK CREATORS
  */
-export const newListThunk = (name, description) => {
+export const newListThunk = (name, description, userId) => {
   return async dispatch => {
     try {
       let obj = {
         name,
-        description
+        description,
+        userId
       }
+
       const {data} = await axios.post('/api/todo', obj)
       console.log('data', data)
       dispatch(getNewList(data))
@@ -38,10 +40,10 @@ export const newListThunk = (name, description) => {
     }
   }
 }
-export const fetchLists = () => {
+export const fetchLists = userID => {
   return async dispatch => {
     try {
-      const {data} = await axios.get('/api/todo')
+      const {data} = await axios.get(`/api/todo/lists/${userID}`)
       dispatch(setLists(data))
     } catch (error) {
       console.log('there was an error in fetchLists')
