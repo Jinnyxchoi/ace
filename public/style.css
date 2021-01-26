@@ -172,3 +172,7 @@ button {
   padding-top: 15px;
   margin-top: 5px;
 }
+.password {
+  display: flex;
+  justify-content: center;
+}

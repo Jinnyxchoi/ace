@@ -2,13 +2,14 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
+import {Redirect} from 'react-router-dom'
 
 /**
  * COMPONENT
  */
 const AuthForm = props => {
   console.log('props', props)
-  const {name, displayName, handleSubmit, error} = props
+  const {name, displayName, handleSubmit, error, handleDemo} = props
 
   return (
     <div>
@@ -35,12 +36,15 @@ const AuthForm = props => {
           {error &&
             error.response && <div> Please enter both email & password </div>}
         </form>
-        <form className="demo-button">
+        <form onSubmit={handleDemo} className="demo-button">
           {' '}
           <button id="demo" type="submit">
             Try Demo Login
           </button>
         </form>
+        <br />
+      </div>
+      <div className="password">
         <a href="/forgotpassword">Forgot Your Password?</a>
       </div>
     </div>
@@ -84,6 +88,13 @@ const mapDispatch = dispatch => {
         password = null
       }
       dispatch(auth(email, password, formName))
+    },
+    handleDemo(evt) {
+      evt.preventDefault()
+      const email = 'demo user'
+      const password = '123'
+
+      dispatch(auth(email, password, 'login'))
     }
   }
 }

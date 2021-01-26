@@ -17,6 +17,9 @@ const ListItem = require('./listItems')
 
 ListItem.belongsTo(List)
 List.hasMany(ListItem)
+
+List.belongsTo(User)
+User.hasMany(List)
 module.exports = {
   User,
   List,

@@ -2,9 +2,12 @@ const router = require('express').Router()
 const {List, ListItem} = require('../db/models')
 module.exports = router
 
-router.get('/', async (req, res, next) => {
+router.get('/lists/:userID', async (req, res, next) => {
   try {
     const allLists = await List.findAll({
+      where: {
+        userId: +req.params.userID
+      },
       include: {
         model: ListItem
       }
