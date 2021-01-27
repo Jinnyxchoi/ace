@@ -17,6 +17,17 @@ router.get('/lists/:userID', async (req, res, next) => {
     next(error)
   }
 })
+router.delete('/lists/:listID', async (req, res, next) => {
+  try {
+    const list = await List.findByPk(+req.params.listID)
+    if (!list) return res.sendStatus(404)
+    await list.destroy()
+    res.sendStatus(204)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.get('/:id', async (req, res, next) => {
   try {
     const list = await List.findOne({

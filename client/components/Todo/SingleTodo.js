@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-// import SingleItem from './SingleItem'
+import DeleteList from './DeleteList'
 
 export default class SingleTodo extends Component {
   componentDidMount() {
@@ -16,6 +16,7 @@ export default class SingleTodo extends Component {
         </Link>
 
         <p id="description-of-list">{description}</p>
+        <DeleteList id={id} />
       </div>
     )
   }
