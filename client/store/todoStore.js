@@ -5,6 +5,7 @@ import axios from 'axios'
  */
 const POST_NEW_LIST = 'POST_NEW_LIST'
 const SET_LISTS = 'SET_LISTS'
+const DELETE_LIST = 'DELETE_LIST'
 
 /**
  * INITIAL STATE
@@ -18,6 +19,11 @@ const getNewList = newList => ({type: POST_NEW_LIST, newList})
 const setLists = lists => ({
   type: SET_LISTS,
   lists
+})
+
+const deleteList = id => ({
+  type: DELETE_LIST,
+  id
 })
 
 /**
@@ -51,15 +57,29 @@ export const fetchLists = userID => {
   }
 }
 
+export const deleteListThunk = listID => {
+  return async dispatch => {
+    try {
+      console.log('inside delete thunk')
+      await axios.delete(`/api/todo/lists/${listID}`)
+      dispatch(deleteList(listID))
+    } catch (error) {
+      console.log('there was an error in deleteListThunk')
+    }
+  }
+}
+
 /**
  * REDUCER
  */
 export default function(state = initialState, action) {
   switch (action.type) {
     case SET_LISTS:
-      return [action.lists][0]
+      return action.lists
     case POST_NEW_LIST:
       return [...state, action.newList]
+    case DELETE_LIST:
+      return state.filter(each => each.id !== action.id)
     default:
       return state
   }

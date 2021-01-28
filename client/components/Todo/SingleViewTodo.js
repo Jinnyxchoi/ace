@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+
 import {
   fetchSingleList,
   postTaskThunk,
   updateCompletedThunk
 } from '../../store/singleTodoStore'
-import {DeleteList} from '../index'
 
 export class SingleViewTodo extends Component {
   constructor(props) {
@@ -76,28 +77,34 @@ export class SingleViewTodo extends Component {
               <div> </div>
             )}
           </div>
-          {listItems.map(item => (
-            <div className="listItem" key={item.id}>
-              <form>
-                <label>
-                  {item.todo}
-                  <input
-                    name="isGoing"
-                    type="checkbox"
-                    checked={item.completed}
-                    onChange={() =>
-                      this.props.updateComplete(
-                        this.props.match.params.listId,
-                        item.id,
-                        !item.completed
-                      )
-                    }
-                  />
-                </label>
-              </form>
-            </div>
-          ))}
-          <DeleteList />
+          <div className="list-items">
+            {listItems.map(item => (
+              <div className="listItem" key={item.id}>
+                <form>
+                  <label>
+                    {item.todo}
+                    <input
+                      name="isGoing"
+                      type="checkbox"
+                      checked={item.completed}
+                      onChange={() =>
+                        this.props.updateComplete(
+                          this.props.match.params.listId,
+                          item.id,
+                          !item.completed
+                        )
+                      }
+                    />
+                  </label>
+                </form>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <Link to="/home">
+            <p>Back to all lists</p>
+          </Link>
         </div>
       </div>
     )
