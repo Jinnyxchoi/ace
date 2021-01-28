@@ -112,7 +112,9 @@ form div {
 }
 .container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+
+  align-items: center;
 }
 #single-list-name {
   /* border-style: dotted;

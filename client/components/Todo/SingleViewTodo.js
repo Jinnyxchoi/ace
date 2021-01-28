@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+
 import {
   fetchSingleList,
   postTaskThunk,
@@ -98,6 +100,11 @@ export class SingleViewTodo extends Component {
               </div>
             ))}
           </div>
+        </div>
+        <div>
+          <Link to="/home">
+            <p>Back to all lists</p>
+          </Link>
         </div>
       </div>
     )
