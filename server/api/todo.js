@@ -54,7 +54,6 @@ router.post('/', async (req, res, next) => {
 
 router.post('/:id', async (req, res, next) => {
   try {
-    console.log('in here')
     const newTask = await ListItem.create(req.body)
     // const list = await List.findOne({
     //   where: {
