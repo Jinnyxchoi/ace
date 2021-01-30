@@ -188,3 +188,7 @@ button {
 .delete-list {
   margin: 30px;
 }
+.calendar-component {
+  display: flex;
+  justify-content: center;
+}
