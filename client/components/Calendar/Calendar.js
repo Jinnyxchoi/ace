@@ -249,58 +249,60 @@ export default class Calendar extends React.Component {
     })
 
     return (
-      <div className="tail-datetime-calendar">
-        <div className="calendar-navi">
-          <span
-            onClick={e => {
-              this.onPrev()
-            }}
-            className="calendar-button button-prev"
-          />
-          {!this.state.showMonthTable &&
-            !this.state.showYearEditor && (
-              <span
-                onClick={e => {
-                  this.showMonth()
-                }}
-                className="calendar-label"
-              >
-                {this.month()},
-              </span>
-            )}
-          <span
-            className="calendar-label"
-            onClick={e => {
-              this.showYearEditor()
-            }}
-          >
-            {this.year()}
-          </span>
+      <div className="calendar-component">
+        <div className="tail-datetime-calendar">
+          <div className="calendar-navi">
+            <span
+              onClick={e => {
+                this.onPrev()
+              }}
+              className="calendar-button button-prev"
+            />
+            {!this.state.showMonthTable &&
+              !this.state.showYearEditor && (
+                <span
+                  onClick={e => {
+                    this.showMonth()
+                  }}
+                  className="calendar-label"
+                >
+                  {`${this.month()},  `}
+                </span>
+              )}
+            <span
+              className="calendar-label"
+              onClick={e => {
+                this.showYearEditor()
+              }}
+            >
+              {this.year()}
+            </span>
 
-          <span
-            onClick={e => {
-              this.onNext()
-            }}
-            className="calendar-button button-next"
-          />
-        </div>
-        <div className="calendar-date">
-          {this.state.showYearNav && <this.YearTable props={this.year()} />}
-          {this.state.showMonthTable && (
-            <this.MonthList data={moment.months()} />
+            <span
+              onClick={e => {
+                this.onNext()
+              }}
+              className="calendar-button button-next"
+            />
+          </div>
+          <div className="calendar-date">
+            {this.state.showYearNav && <this.YearTable props={this.year()} />}
+            {this.state.showMonthTable && (
+              <this.MonthList data={moment.months()} />
+            )}
+          </div>
+
+          {this.state.showCalendarTable && (
+            <div className="calendar-date">
+              <table className="calendar-day">
+                <thead>
+                  <tr>{weekdayshortname}</tr>
+                </thead>
+                <tbody>{daysinmonth}</tbody>
+              </table>
+            </div>
           )}
         </div>
-
-        {this.state.showCalendarTable && (
-          <div className="calendar-date">
-            <table className="calendar-day">
-              <thead>
-                <tr>{weekdayshortname}</tr>
-              </thead>
-              <tbody>{daysinmonth}</tbody>
-            </table>
-          </div>
-        )}
       </div>
     )
   }
