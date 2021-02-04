@@ -5,7 +5,10 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import todo from './todoStore'
 import user from './user'
 import singleTodo from './singleTodoStore'
-const reducer = combineReducers({todo, user, singleTodo})
+import monthlyEvents from './monthlyEvents'
+
+const reducer = combineReducers({todo, user, singleTodo, monthlyEvents})
+
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
