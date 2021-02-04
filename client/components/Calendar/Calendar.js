@@ -1,47 +1,40 @@
 import React from 'react'
 import moment from 'moment'
 import CalendarTable from './CalendarTable'
+import {connect} from 'react-redux'
+import {fetchAllEvents} from '../../store/monthlyEvents'
 
-export default class Calendar extends React.Component {
+class Calendar extends React.Component {
   weekdayshort = moment.weekdaysShort()
   constructor() {
     super()
 
     this.state = {
-      showCalendarTable: true,
-      showMonthTable: false,
+      showCalendarTable: true, //may need to delete this.
       dateObject: moment(),
       allmonths: moment.months(),
-      showYearNav: false,
       selectedDay: null
     }
   }
-  setYear = year => {
-    console.log('setYear')
-    let dateObject = Object.assign({}, this.state.dateObject)
-    dateObject = moment(dateObject).set('year', year)
-    this.setState({
-      dateObject: dateObject,
-      showMonthTable: !this.showMonthTable,
-      showYearNav: !this.showYearNav
-    })
+  componentDidMount() {
+    console.log('props passed down', this.state.dateObject._d)
+    this.props.loadEvents(this.state.dateObject._d.getMonth() + 1)
   }
   setMonth = month => {
     let monthNo = this.state.allmonths.indexOf(month)
+    // console.log('month', monthNo)
     let dateObject = Object.assign({}, this.state.dateObject)
     dateObject = moment(dateObject).set('month', monthNo)
     this.setState({
-      dateObject: dateObject,
-      showMonthTable: !this.state.showMonthTable,
-      showCalendarTable: !this.state.showCalendarTable
+      dateObject: dateObject
     })
+
+    this.props.loadEvents(monthNo + 1)
   }
   daysInMonth = () => {
     return this.state.dateObject.daysInMonth()
   }
-  // year = () => {
-  //   return this.state.dateObject.format('Y')
-  // }
+
   currentDay = () => {
     return this.state.dateObject.format('D')
   }
@@ -53,46 +46,28 @@ export default class Calendar extends React.Component {
     return firstDay
   }
 
-  showMonth = () => {
-    this.setState({
-      showMonthTable: !this.state.showMonthTable,
-      showCalendarTable: !this.state.showCalendarTable
-    })
-  }
-
-  showYearEditor = () => {
-    this.setState({
-      showYearNav: true,
-      showCalendarTable: !this.state.showCalendarTable
-    })
-  }
-
-  onPrev = () => {
-    let curr = ''
-    if (this.state.showMonthTable == true) {
-      curr = 'year'
-    } else {
-      curr = 'month'
-    }
-    this.setState({
-      dateObject: this.state.dateObject.subtract(1, curr)
-    })
-  }
-  onNext = () => {
-    let curr = ''
-    if (this.state.showMonthTable == true) {
-      curr = 'year'
-    } else {
-      curr = 'month'
-    }
-    this.setState({
-      dateObject: this.state.dateObject.add(1, curr)
-    })
-  }
-
-  onYearChange = e => {
-    this.setYear(e.target.value)
-  }
+  // onPrev = () => {
+  //   let curr = ''
+  //   if (this.state.showMonthTable == true) {
+  //     curr = 'year'
+  //   } else {
+  //     curr = 'month'
+  //   }
+  //   this.setState({
+  //     dateObject: this.state.dateObject.subtract(1, curr),
+  //   })
+  // }
+  // onNext = () => {
+  //   let curr = ''
+  //   if (this.state.showMonthTable == true) {
+  //     curr = 'year'
+  //   } else {
+  //     curr = 'month'
+  //   }
+  //   this.setState({
+  //     dateObject: this.state.dateObject.add(1, curr),
+  //   })
+  // }
 
   onDayClick = (e, d) => {
     this.setState(
@@ -105,6 +80,7 @@ export default class Calendar extends React.Component {
     )
   }
   render() {
+    console.log('this.props.events', this.props.events)
     let weekdayshortname = this.weekdayshort.map(day => {
       return <th key={day}>{day}</th>
     })
@@ -115,6 +91,9 @@ export default class Calendar extends React.Component {
     let daysInMonth = []
     for (let d = 1; d <= this.daysInMonth(); d++) {
       let currentDay = d == this.currentDay() ? 'today' : ''
+      //create something like this and if there is task then put an emoji in the span before or after {d}
+      //you can maybe iterate through the array in the redux, make an object and then create the key as something like "aug 30" and here in the for loop we can also create a key with this.dateObject and d and then do something like Object.keys()
+      //the task table would need userId, task date, task
       // let selectedClass = (d == this.state.selectedDay ? " selected-day " : "")
       daysInMonth.push(
         <td key={d} className={`calendar-day ${currentDay}`}>
@@ -125,6 +104,7 @@ export default class Calendar extends React.Component {
           >
             {d}
           </span>
+          {/* <p className="tasked">🌼</p> */}
         </td>
       )
     }
@@ -151,16 +131,25 @@ export default class Calendar extends React.Component {
     })
 
     return (
-      <div className="calendar-component">
-        <CalendarTable
-          {...this.state}
-          weekdayshortname={weekdayshortname}
-          daysinmonth={daysinmonth}
-          setYear={this.setYear}
-          showYearEditor={this.showYearEditor}
-          setMonth={this.setMonth}
-        />
+      <div>
+        <h2 className="calendar-heading">🌼YOUR EVENTS🌼</h2>
+        <div className="calendar-component">
+          <CalendarTable
+            {...this.state}
+            weekdayshortname={weekdayshortname}
+            daysinmonth={daysinmonth}
+            setMonth={this.setMonth}
+          />
+        </div>{' '}
       </div>
     )
   }
 }
+const mapDispatch = dispatch => ({
+  loadEvents: date => dispatch(fetchAllEvents(date))
+})
+
+const mapState = state => ({
+  events: state.monthlyEvents
+})
+export default connect(mapState, mapDispatch)(Calendar)

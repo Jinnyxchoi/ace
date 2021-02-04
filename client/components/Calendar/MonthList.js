@@ -2,25 +2,41 @@ import React from 'react'
 import moment from 'moment'
 
 export default class MonthList extends React.Component {
-  // setMonth = (month) => {
-  //   let monthNo = this.state.allmonths.indexOf(month)
-  //   let dateObject = Object.assign({}, this.state.dateObject)
-  //   dateObject = moment(dateObject).set('month', monthNo)
-  //   this.setState({
-  //     dateObject: dateObject,
-  //     showMonthTable: !this.state.showMonthTable,
-  //     showCalendarTable: !this.state.showCalendarTable,
-  //   })
-  // }
+  constructor(props) {
+    super(props)
+    this.state = {
+      buttonClicked: false
+    }
+    // this.handleClick = this.handleClick.bind(this)
+  }
+  handleClick = evt => {
+    evt.preventDefault()
+    this.setState({
+      buttonClicked: true
+    })
+  }
+  monthSelected = data => {
+    this.props.setMonth(data)
+    this.setState({
+      buttonClicked: false
+    })
+  }
   MonthList = props => {
     let months = []
     props.data.map(data => {
       months.push(
+        // <td
+        //   key={data}
+        //   className="calendar-month"
+        //   onClick={(e) => {
+        //     this.props.setMonth(data)
+        //   }}
+        // >
         <td
           key={data}
           className="calendar-month"
           onClick={e => {
-            this.props.setMonth(data)
+            this.monthSelected(data)
           }}
         >
           <span>{data}</span>
@@ -47,15 +63,23 @@ export default class MonthList extends React.Component {
   }
 
   render() {
+    console.log('STATE', this.state)
     return (
-      <table className="calendar-month">
-        <thead>
-          <tr>
-            <th colSpan="4">Select a Month</th>
-          </tr>
-        </thead>
-        <tbody>{this.MonthList(this.props)}</tbody>
-      </table>
+      <div>
+        <button onClick={this.handleClick} type="submit">
+          change month
+        </button>
+        <table className="calendar-month">
+          {/* <thead> */}
+
+          {/* </thead> */}
+          {this.state.buttonClicked ? (
+            <tbody>{this.MonthList(this.props)}</tbody>
+          ) : (
+            <tbody />
+          )}
+        </table>{' '}
+      </div>
     )
   }
 }

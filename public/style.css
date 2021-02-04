@@ -200,3 +200,29 @@ button {
 .calendar-label {
   font-size: 30px;
 }
+.calendar-heading {
+  padding: 30px;
+  text-align: center;
+}
+.tail-datetime-calendar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar-navi {
+  padding: 30px;
+}
+.calendar-day {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='40' viewport='0 0 100 100' style='fill:white;font-size:24px;'><text y='50%'>➕</text></svg>")
+      16 0,
+    auto;
+}
+.today {
+  border: dotted;
+}
+/* .tasked {
+  margin: 0;
+  font-size: medium;
+} */

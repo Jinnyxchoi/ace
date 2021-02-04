@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Event} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -12,7 +12,24 @@ async function seed() {
     User.create({email: 'murphy@email.com', password: '123'})
   ])
 
-  console.log(`seeded ${users.length} users`)
+  await Promise.all([
+    Event.create({
+      eventDate: new Date(),
+      event: 'WWC conference',
+      userId: 1
+    }),
+    Event.create({
+      eventDate: new Date(),
+      event: 'WWC conference',
+      userId: 1
+    }),
+    Event.create({
+      eventDate: new Date(2021, 11, 17),
+      event: 'WWC conference',
+      userId: 1
+    })
+  ])
+
   console.log(`seeded successfully`)
 }
 
