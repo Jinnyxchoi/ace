@@ -9,39 +9,24 @@ export default class Calendar extends React.Component {
 
     this.state = {
       showCalendarTable: true,
-      showMonthTable: false,
       dateObject: moment(),
       allmonths: moment.months(),
-      showYearNav: false,
       selectedDay: null
     }
   }
-  setYear = year => {
-    console.log('setYear')
-    let dateObject = Object.assign({}, this.state.dateObject)
-    dateObject = moment(dateObject).set('year', year)
-    this.setState({
-      dateObject: dateObject,
-      showMonthTable: !this.showMonthTable,
-      showYearNav: !this.showYearNav
-    })
-  }
+
   setMonth = month => {
     let monthNo = this.state.allmonths.indexOf(month)
     let dateObject = Object.assign({}, this.state.dateObject)
     dateObject = moment(dateObject).set('month', monthNo)
     this.setState({
-      dateObject: dateObject,
-      showMonthTable: !this.state.showMonthTable,
-      showCalendarTable: !this.state.showCalendarTable
+      dateObject: dateObject
     })
   }
   daysInMonth = () => {
     return this.state.dateObject.daysInMonth()
   }
-  // year = () => {
-  //   return this.state.dateObject.format('Y')
-  // }
+
   currentDay = () => {
     return this.state.dateObject.format('D')
   }
@@ -51,20 +36,6 @@ export default class Calendar extends React.Component {
       .startOf('month')
       .format('d') // Day of week 0...1..5...6
     return firstDay
-  }
-
-  showMonth = () => {
-    this.setState({
-      showMonthTable: !this.state.showMonthTable,
-      showCalendarTable: !this.state.showCalendarTable
-    })
-  }
-
-  showYearEditor = () => {
-    this.setState({
-      showYearNav: true,
-      showCalendarTable: !this.state.showCalendarTable
-    })
   }
 
   onPrev = () => {
@@ -88,10 +59,6 @@ export default class Calendar extends React.Component {
     this.setState({
       dateObject: this.state.dateObject.add(1, curr)
     })
-  }
-
-  onYearChange = e => {
-    this.setYear(e.target.value)
   }
 
   onDayClick = (e, d) => {
