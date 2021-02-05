@@ -1,5 +1,5 @@
 import React from 'react'
-import Popup from 'reactjs-popup'
+import ControlledPopup from './ControlledPopup'
 
 export default class MonthList extends React.Component {
   constructor(props) {
@@ -61,30 +61,9 @@ export default class MonthList extends React.Component {
   }
 
   render() {
-    console.log('STATE', this.state)
     return (
       <div>
-        <Popup trigger={<button className="button"> Add Event </button>} modal>
-          <div className="modal">
-            <span>
-              <form onSubmit={this.handleSubmit}>
-                <div>
-                  <label htmlFor="date">
-                    <small>Event Date</small>
-                  </label>
-                  <input type="date" id="date" />
-                </div>
-                <div>
-                  <label htmlFor="eventname">
-                    <small>Event Name</small>
-                  </label>
-                  <input name="eventname" type="text" />
-                </div>
-                <button type="submit">Submit</button>
-              </form>
-            </span>
-          </div>
-        </Popup>
+        <ControlledPopup />
         <button onClick={this.handleClick} type="submit">
           change month
         </button>
