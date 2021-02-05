@@ -1,5 +1,5 @@
 import React from 'react'
-import moment from 'moment'
+import Popup from 'reactjs-popup'
 
 export default class MonthList extends React.Component {
   constructor(props) {
@@ -8,6 +8,11 @@ export default class MonthList extends React.Component {
       buttonClicked: false
     }
     // this.handleClick = this.handleClick.bind(this)
+  }
+  handleSubmit = evt => {
+    evt.preventDefault()
+    console.log(evt.target.date.value)
+    console.log(evt.target.eventname.value)
   }
   handleClick = evt => {
     evt.preventDefault()
@@ -25,13 +30,6 @@ export default class MonthList extends React.Component {
     let months = []
     props.data.map(data => {
       months.push(
-        // <td
-        //   key={data}
-        //   className="calendar-month"
-        //   onClick={(e) => {
-        //     this.props.setMonth(data)
-        //   }}
-        // >
         <td
           key={data}
           className="calendar-month"
@@ -66,6 +64,27 @@ export default class MonthList extends React.Component {
     console.log('STATE', this.state)
     return (
       <div>
+        <Popup trigger={<button className="button"> Add Event </button>} modal>
+          <div className="modal">
+            <span>
+              <form onSubmit={this.handleSubmit}>
+                <div>
+                  <label htmlFor="date">
+                    <small>Event Date</small>
+                  </label>
+                  <input type="date" id="date" />
+                </div>
+                <div>
+                  <label htmlFor="eventname">
+                    <small>Event Name</small>
+                  </label>
+                  <input name="eventname" type="text" />
+                </div>
+                <button type="submit">Submit</button>
+              </form>
+            </span>
+          </div>
+        </Popup>
         <button onClick={this.handleClick} type="submit">
           change month
         </button>

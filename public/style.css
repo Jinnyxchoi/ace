@@ -226,3 +226,8 @@ button {
   margin: 0;
   font-size: medium;
 } */
+.modal {
+  background-color: plum;
+  padding: 50px;
+  border-radius: 25px;
+}
