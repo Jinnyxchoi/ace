@@ -1,5 +1,5 @@
 import React from 'react'
-import moment from 'moment'
+import ControlledPopup from './ControlledPopup'
 
 export default class MonthList extends React.Component {
   constructor(props) {
@@ -8,6 +8,11 @@ export default class MonthList extends React.Component {
       buttonClicked: false
     }
     // this.handleClick = this.handleClick.bind(this)
+  }
+  handleSubmit = evt => {
+    evt.preventDefault()
+    console.log(evt.target.date.value)
+    console.log(evt.target.eventname.value)
   }
   handleClick = evt => {
     evt.preventDefault()
@@ -25,13 +30,6 @@ export default class MonthList extends React.Component {
     let months = []
     props.data.map(data => {
       months.push(
-        // <td
-        //   key={data}
-        //   className="calendar-month"
-        //   onClick={(e) => {
-        //     this.props.setMonth(data)
-        //   }}
-        // >
         <td
           key={data}
           className="calendar-month"
@@ -63,9 +61,9 @@ export default class MonthList extends React.Component {
   }
 
   render() {
-    console.log('STATE', this.state)
     return (
       <div>
+        <ControlledPopup />
         <button onClick={this.handleClick} type="submit">
           change month
         </button>

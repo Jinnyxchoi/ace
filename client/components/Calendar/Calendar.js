@@ -10,7 +10,6 @@ class Calendar extends React.Component {
     super()
 
     this.state = {
-      showCalendarTable: true, //may need to delete this.
       dateObject: moment(),
       allmonths: moment.months(),
       selectedDay: null

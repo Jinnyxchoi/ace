@@ -32,16 +32,14 @@ export default class Calendar extends React.Component {
           {<MonthList data={moment.months()} setMonth={this.props.setMonth} />}
         </div>
 
-        {this.props.showCalendarTable && (
-          <div className="calendar-date">
-            <table className="calendar-day">
-              <thead>
-                <tr>{this.props.weekdayshortname}</tr>
-              </thead>
-              <tbody>{this.props.daysinmonth}</tbody>
-            </table>
-          </div>
-        )}
+        <div className="calendar-date">
+          <table className="calendar-day">
+            <thead>
+              <tr>{this.props.weekdayshortname}</tr>
+            </thead>
+            <tbody>{this.props.daysinmonth}</tbody>
+          </table>
+        </div>
       </div>
     )
   }

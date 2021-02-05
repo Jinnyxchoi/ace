@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Todo} from './index'
 import Calendar from './Calendar/Calendar'
-
 /**
  * COMPONENT
  */
