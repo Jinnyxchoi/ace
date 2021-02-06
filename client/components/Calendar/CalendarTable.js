@@ -17,7 +17,7 @@ export default class Calendar extends React.Component {
             {`${this.props.dateObject.format('MMMM')},  `}
           </span>
 
-          <span className="calendar-label" onClick={this.props.showYearEditor}>
+          <span className="calendar-label">
             {this.props.dateObject.format('Y')}
           </span>
 
@@ -29,11 +29,17 @@ export default class Calendar extends React.Component {
           /> */}
         </div>
         <div className="calendar-date">
-          {<MonthList data={moment.months()} setMonth={this.props.setMonth} />}
+          {
+            <MonthList
+              data={moment.months()}
+              setMonth={this.props.setMonth}
+              dateObject={this.props.dateObject}
+            />
+          }
         </div>
 
         <div className="calendar-date">
-          <table className="calendar-day">
+          <table>
             <thead>
               <tr>{this.props.weekdayshortname}</tr>
             </thead>

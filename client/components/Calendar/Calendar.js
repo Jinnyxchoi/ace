@@ -17,7 +17,10 @@ class Calendar extends React.Component {
   }
   componentDidMount() {
     console.log('props passed down', this.state.dateObject._d)
-    this.props.loadEvents(this.state.dateObject._d.getMonth() + 1)
+    this.props.loadEvents(
+      this.state.dateObject._d.getMonth(),
+      this.props.user.id
+    )
   }
   setMonth = month => {
     let monthNo = this.state.allmonths.indexOf(month)
@@ -28,7 +31,7 @@ class Calendar extends React.Component {
       dateObject: dateObject
     })
 
-    this.props.loadEvents(monthNo + 1)
+    this.props.loadEvents(monthNo, this.props.user.id)
   }
   daysInMonth = () => {
     return this.state.dateObject.daysInMonth()
@@ -94,6 +97,8 @@ class Calendar extends React.Component {
       //you can maybe iterate through the array in the redux, make an object and then create the key as something like "aug 30" and here in the for loop we can also create a key with this.dateObject and d and then do something like Object.keys()
       //the task table would need userId, task date, task
       // let selectedClass = (d == this.state.selectedDay ? " selected-day " : "")
+      const task = d in this.props.events
+
       daysInMonth.push(
         <td key={d} className={`calendar-day ${currentDay}`}>
           <span
@@ -103,7 +108,11 @@ class Calendar extends React.Component {
           >
             {d}
           </span>
-          {/* <p className="tasked">🌼</p> */}
+          {task ? (
+            <p className="tasked">O</p>
+          ) : (
+            <div className="un-tasked">O</div>
+          )}
         </td>
       )
     }
@@ -145,10 +154,11 @@ class Calendar extends React.Component {
   }
 }
 const mapDispatch = dispatch => ({
-  loadEvents: date => dispatch(fetchAllEvents(date))
+  loadEvents: (date, userId) => dispatch(fetchAllEvents(date, userId))
 })
 
 const mapState = state => ({
-  events: state.monthlyEvents
+  events: state.monthlyEvents,
+  user: state.user
 })
 export default connect(mapState, mapDispatch)(Calendar)

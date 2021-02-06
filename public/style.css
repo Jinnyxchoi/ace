@@ -193,15 +193,16 @@ button {
   justify-content: center;
 }
 .calendar-day {
-  font-size: 50px;
-  padding: 30px;
+  text-align: center;
+  font-size: 40px;
+  padding: 20px;
 }
 
 .calendar-label {
   font-size: 30px;
 }
 .calendar-heading {
-  padding: 30px;
+  padding: 10px;
   text-align: center;
 }
 .tail-datetime-calendar {
@@ -222,12 +223,27 @@ button {
 .today {
   border: dotted;
 }
-/* .tasked {
+.tasked {
+  color: orangered;
   margin: 0;
   font-size: medium;
-} */
+  text-align: center;
+}
 .modal {
   background-color: plum;
   padding: 50px;
   border-radius: 25px;
+}
+.calendar-buttons {
+  display: flex;
+}
+.calendar-buttons button {
+  margin: 20px;
+}
+
+.un-tasked {
+  color: white;
+  margin: 0;
+  font-size: medium;
+  text-align: center;
 }
