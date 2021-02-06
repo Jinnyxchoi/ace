@@ -7,13 +7,12 @@ export default class MonthList extends React.Component {
     this.state = {
       buttonClicked: false
     }
-    // this.handleClick = this.handleClick.bind(this)
   }
-  handleSubmit = evt => {
-    evt.preventDefault()
-    console.log(evt.target.date.value)
-    console.log(evt.target.eventname.value)
-  }
+  // handleSubmit = (evt) => {
+  //   evt.preventDefault()
+  //   console.log(evt.target.date.value)
+  //   console.log(evt.target.eventname.value)
+  // }
   handleClick = evt => {
     evt.preventDefault()
     this.setState({
@@ -62,15 +61,12 @@ export default class MonthList extends React.Component {
 
   render() {
     return (
-      <div>
-        <ControlledPopup />
+      <div className="calendar-buttons">
+        <ControlledPopup dateObject={this.props.dateObject} />
         <button onClick={this.handleClick} type="submit">
           change month
         </button>
         <table className="calendar-month">
-          {/* <thead> */}
-
-          {/* </thead> */}
           {this.state.buttonClicked ? (
             <tbody>{this.MonthList(this.props)}</tbody>
           ) : (

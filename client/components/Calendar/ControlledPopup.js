@@ -1,19 +1,26 @@
 import Popup from 'reactjs-popup'
 import React, {useState} from 'react'
+import {postEventThunk} from '../../store/monthlyEvents'
+import {connect} from 'react-redux'
 
-const ControlledPopup = () => {
+const ControlledPopup = props => {
   const [open, setOpen] = useState(false)
   const closeModal = () => setOpen(false)
   const handleSubmit = evt => {
     evt.preventDefault()
-    console.log(evt.target.date.value)
-    console.log(evt.target.eventname.value)
+    const obj = {
+      eventDate: evt.target.date.value,
+      event: evt.target.eventname.value,
+      userId: props.user.id
+    }
+    console.log('props', props.dateObject._d.getMonth())
+    props.postEvent(obj, props.dateObject._d.getMonth())
     closeModal()
   }
   return (
     <div>
       <button type="button" className="button" onClick={() => setOpen(o => !o)}>
-        Controlled Popup
+        Add Event
       </button>
       <Popup open={open} closeOnDocumentClick onClose={closeModal}>
         <div className="modal">
@@ -40,41 +47,14 @@ const ControlledPopup = () => {
     </div>
   )
 }
-export default ControlledPopup
 
-{
-  /* <Popup
-          trigger={<button className="button"> Add Event </button>}
-          modal
-          nested
-        >
-          {(close) => (
-            <div className="modal">
-              <button className="close" onClick={close}>
-                &times;
-              </button>
+const mapState = state => ({
+  user: state.user,
+  events: state.monthlyEvents
+})
 
-              <form onSubmit={this.handleSubmit}>
-                <div>
-                  <label htmlFor="date">
-                    <small>Event Date</small>
-                  </label>
-                  <input type="date" id="date" />
-                </div>
-                <div>
-                  <label htmlFor="eventname">
-                    <small>Event Name</small>
-                  </label>
-                  <input name="eventname" type="text" />
-                </div>
-                <button type="submit">Submit</button>
-              </form>
-              <div className="actions">
-                <button onClick={close} className="button">
-                  close modal
-                </button>
-              </div>
-            </div>
-          )}
-        </Popup> */
-}
+const mapDispatch = dispatch => ({
+  postEvent: (obj, currentMonth) => dispatch(postEventThunk(obj, currentMonth))
+})
+
+export default connect(mapState, mapDispatch)(ControlledPopup)
