@@ -1,7 +1,7 @@
 {
   "name": "ace",
   "version": "2.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "description": "Product management app",
   "engines": {
     "node": "~12.11.1"
   },
@@ -57,7 +57,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.1",
-    "react-router-dom": "^5.0.0",
+    "react-router-dom": "^5.2.0",
     "reactjs-popup": "^2.0.4",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
