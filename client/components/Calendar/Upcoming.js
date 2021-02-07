@@ -1,6 +1,7 @@
 import React from 'react'
 import {fetchAllEventDetails} from '../../store/eventDetails'
 import {connect} from 'react-redux'
+import UpcomingEvent from './UpcomingEvent'
 
 class Upcoming extends React.Component {
   componentDidMount() {
@@ -10,22 +11,20 @@ class Upcoming extends React.Component {
 
   render() {
     const eventDetails = this.props.eventDetails
-    const eventDate =
-      eventDetails.length > 0
-        ? new Date(eventDetails[1].eventDate).getDate()
-        : ''
+    console.log('eventDetails,', eventDetails)
 
-    const eventMonth =
-      eventDetails.length > 0
-        ? new Date(eventDetails[1].eventDate).getMonth() + 1
-        : ''
-    console.log('eventDate', eventDate, eventMonth)
     return (
-      <div>
-        <p>Your Upcoming Events</p>
-        <p>
-          {eventMonth}/{eventDate}
-        </p>
+      <div className="upcoming">
+        <h4>Your Events</h4>
+        {eventDetails.length > 0 ? (
+          <div>
+            {eventDetails.map(each => (
+              <UpcomingEvent key={each.id} event={each} />
+            ))}
+          </div>
+        ) : (
+          <div />
+        )}
       </div>
     )
   }

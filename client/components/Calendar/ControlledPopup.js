@@ -2,6 +2,7 @@ import Popup from 'reactjs-popup'
 import React, {useState} from 'react'
 import {postEventThunk} from '../../store/monthlyEvents'
 import {connect} from 'react-redux'
+import {fetchAllEventDetails} from '../../store/eventDetails'
 
 const ControlledPopup = props => {
   const [open, setOpen] = useState(false)
@@ -13,9 +14,9 @@ const ControlledPopup = props => {
       event: evt.target.eventname.value,
       userId: props.user.id
     }
-    console.log('props', props.dateObject._d.getMonth())
     props.postEvent(obj, props.dateObject._d.getMonth())
     closeModal()
+    props.fetch(props.user.id)
   }
   return (
     <div>
@@ -54,7 +55,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  postEvent: (obj, currentMonth) => dispatch(postEventThunk(obj, currentMonth))
+  postEvent: (obj, currentMonth) => dispatch(postEventThunk(obj, currentMonth)),
+  fetch: userID => dispatch(fetchAllEventDetails(userID))
 })
 
 export default connect(mapState, mapDispatch)(ControlledPopup)

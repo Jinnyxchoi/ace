@@ -25,7 +25,7 @@ async function seed() {
       userId: 3
     }),
     Event.create({
-      eventDate: new Date(2021, 11, 17),
+      eventDate: new Date(),
       event: 'Launch Day',
       userId: 3
     })
@@ -60,7 +60,7 @@ async function seed() {
       listId: 2
     }),
     ListItem.create({
-      todo: 'Kathryn Nguyen',
+      todo: 'Kathryn Smith',
       completed: false,
       listId: 3
     })
