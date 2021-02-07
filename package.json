@@ -1,10 +1,7 @@
 {
   "name": "ace",
-  "version": "2.0.0",
-  "description": "Product management app",
-  "engines": {
-    "node": "~12.11.1"
-  },
+  "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "build-client": "webpack",

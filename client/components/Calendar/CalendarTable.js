@@ -29,13 +29,11 @@ export default class Calendar extends React.Component {
           /> */}
         </div>
         <div className="calendar-date">
-          {
-            <MonthList
-              data={moment.months()}
-              setMonth={this.props.setMonth}
-              dateObject={this.props.dateObject}
-            />
-          }
+          <MonthList
+            data={moment.months()}
+            setMonth={this.props.setMonth}
+            dateObject={this.props.dateObject}
+          />
         </div>
 
         <div className="calendar-date">
