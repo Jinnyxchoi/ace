@@ -190,7 +190,7 @@ button {
 }
 .calendar-component {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 .calendar-day {
   text-align: center;
@@ -247,3 +247,9 @@ button {
   font-size: medium;
   text-align: center;
 }
+.upcoming {
+  margin: 30px;
+}
+/* .specific-event {
+  padding: 10px;
+} */

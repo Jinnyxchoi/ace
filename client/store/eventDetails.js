@@ -13,6 +13,10 @@ export const fetchAllEventDetails = userId => {
     try {
       console.log('going into even/all')
       const {data} = await axios.get(`/api/event/all/${userId}`)
+
+      console.log('data', data)
+      await data.sort((a, b) => a.eventDate - b.eventDate)
+
       dispatch(getAllEventDetails(data))
     } catch (error) {
       console.log('there was an error in fetchAllEventDetails')
