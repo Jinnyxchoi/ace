@@ -6,8 +6,15 @@ import todo from './todoStore'
 import user from './user'
 import singleTodo from './singleTodoStore'
 import monthlyEvents from './monthlyEvents'
+import eventDetails from './eventDetails'
 
-const reducer = combineReducers({todo, user, singleTodo, monthlyEvents})
+const reducer = combineReducers({
+  todo,
+  user,
+  singleTodo,
+  monthlyEvents,
+  eventDetails
+})
 
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
