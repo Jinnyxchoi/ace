@@ -8,11 +8,7 @@ export default class MonthList extends React.Component {
       buttonClicked: false
     }
   }
-  // handleSubmit = (evt) => {
-  //   evt.preventDefault()
-  //   console.log(evt.target.date.value)
-  //   console.log(evt.target.eventname.value)
-  // }
+
   handleClick = evt => {
     evt.preventDefault()
     this.setState({
@@ -27,10 +23,10 @@ export default class MonthList extends React.Component {
   }
   MonthList = props => {
     let months = []
-    props.data.map(data => {
+    props.data.map((data, i) => {
       months.push(
         <td
-          key={data}
+          key={i}
           className="calendar-month"
           onClick={e => {
             this.monthSelected(data)
@@ -54,7 +50,7 @@ export default class MonthList extends React.Component {
     })
     rows.push(cells)
     let monthlist = rows.map((d, i) => {
-      return <tr>{d}</tr>
+      return <tr key={i}>{d}</tr>
     })
     return monthlist
   }

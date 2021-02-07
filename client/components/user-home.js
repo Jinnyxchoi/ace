@@ -8,7 +8,6 @@ import Calendar from './Calendar/Calendar'
  */
 export const UserHome = props => {
   const {email} = props
-  console.log('inside UserHome')
   return (
     <div>
       <h3>Welcome, {email}</h3>

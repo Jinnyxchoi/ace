@@ -17,7 +17,6 @@ class Calendar extends React.Component {
     }
   }
   componentDidMount() {
-    console.log('props passed down', this.state.dateObject._d)
     this.props.loadEvents(
       this.state.dateObject._d.getMonth(),
       this.props.user.id
@@ -25,7 +24,6 @@ class Calendar extends React.Component {
   }
   setMonth = month => {
     let monthNo = this.state.allmonths.indexOf(month)
-    // console.log('month', monthNo)
     let dateObject = Object.assign({}, this.state.dateObject)
     dateObject = moment(dateObject).set('month', monthNo)
     this.setState({
@@ -89,7 +87,7 @@ class Calendar extends React.Component {
     })
     let blanks = []
     for (let i = 0; i < this.firstDayOfMonth(); i++) {
-      blanks.push(<td className="calendar-day empty" />)
+      blanks.push(<td key={i} className="calendar-day empty" />)
     }
     let daysInMonth = []
     for (let d = 1; d <= this.daysInMonth(); d++) {

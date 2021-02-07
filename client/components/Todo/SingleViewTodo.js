@@ -20,7 +20,6 @@ export class SingleViewTodo extends Component {
   }
   componentDidMount() {
     this.props.loadingList(this.props.match.params.listId)
-    console.log('PROPS', this.props.singleTodo)
   }
   handleClick(evt) {
     evt.preventDefault()
