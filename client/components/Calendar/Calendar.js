@@ -3,6 +3,7 @@ import moment from 'moment'
 import CalendarTable from './CalendarTable'
 import {connect} from 'react-redux'
 import {fetchAllEvents} from '../../store/monthlyEvents'
+import Upcoming from './Upcoming'
 
 class Calendar extends React.Component {
   weekdayshort = moment.weekdaysShort()
@@ -93,10 +94,7 @@ class Calendar extends React.Component {
     let daysInMonth = []
     for (let d = 1; d <= this.daysInMonth(); d++) {
       let currentDay = d == this.currentDay() ? 'today' : ''
-      //create something like this and if there is task then put an emoji in the span before or after {d}
-      //you can maybe iterate through the array in the redux, make an object and then create the key as something like "aug 30" and here in the for loop we can also create a key with this.dateObject and d and then do something like Object.keys()
-      //the task table would need userId, task date, task
-      // let selectedClass = (d == this.state.selectedDay ? " selected-day " : "")
+
       const task = d in this.props.events
 
       daysInMonth.push(
@@ -135,7 +133,7 @@ class Calendar extends React.Component {
     })
 
     let daysinmonth = rows.map((d, i) => {
-      return <tr>{d}</tr>
+      return <tr key={i}>{d}</tr>
     })
 
     return (
@@ -148,6 +146,7 @@ class Calendar extends React.Component {
             daysinmonth={daysinmonth}
             setMonth={this.setMonth}
           />
+          <Upcoming />
         </div>{' '}
       </div>
     )

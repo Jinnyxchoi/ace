@@ -4,6 +4,19 @@ const {Op} = require('sequelize')
 
 module.exports = router
 
+router.get('/all/:userID', async (req, res, next) => {
+  try {
+    const allEvents = await Event.findAll({
+      where: {
+        userId: +req.params.userID
+      }
+    })
+    res.json(allEvents)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.get('/:month/:userID', async (req, res, next) => {
   try {
     console.log('going in to api')
