@@ -16,7 +16,7 @@ module.exports = app
 if (process.env.NODE_ENV === 'test') {
   after('close the session store', () => sessionStore.stopExpiringSessions())
 }
-console.log('failing here')
+console.log('passing 1')
 /**
  * In your development environment, you can keep all of your
  * app's secret API keys in a file called `secrets.js`, in your project
@@ -29,6 +29,7 @@ console.log('failing here')
 
 // passport registration
 passport.serializeUser((user, done) => done(null, user.id))
+console.log('passing 2')
 
 passport.deserializeUser(async (id, done) => {
   try {
@@ -38,6 +39,7 @@ passport.deserializeUser(async (id, done) => {
     done(err)
   }
 })
+console.log('passing 3')
 
 const createApp = () => {
   // logging middleware
@@ -93,6 +95,7 @@ const createApp = () => {
   })
 }
 
+console.log('passing 4')
 const startListening = () => {
   // start listening (and create a 'server' object representing our server)
   const server = app.listen(PORT, () =>
@@ -101,12 +104,19 @@ const startListening = () => {
 }
 
 const syncDb = () => db.sync()
+console.log('passing 5')
 
 async function bootApp() {
   await sessionStore.sync()
+  console.log('passing after sessionStore')
   await syncDb()
+  console.log('passing after syncdb')
+
   await createApp()
+  console.log('passing after createapp')
+
   await startListening()
+  console.log('passing after startlistening')
 }
 // This evaluates as true when this file is run directly from the command line,
 // i.e. when we say 'node server/index.js' (or 'nodemon server/index.js', or 'nodemon server', etc)
