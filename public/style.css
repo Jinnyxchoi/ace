@@ -22,11 +22,13 @@ nav a {
   display: inline-block;
   margin: 1em;
 }
-.navbar {
+nav {
   display: flex;
+  /* flex-direction: row; */
   justify-content: space-between;
   background-color: #f7fe7d;
   font-weight: 900;
+  max-height: 22vh;
 }
 
 form div {

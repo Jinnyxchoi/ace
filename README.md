@@ -1,6 +1,7 @@
 # Ace
 
 Welcome To Your One Stop Project Management App.
+Try out the deployed version here: https://ace-the-app.herokuapp.com/
 
 Ace is more than just a project management tool — it’s a better way to work. Teams that switch to Ace are more productive and better organized. They communicate better and require fewer meetings. And they’re far more efficient than before. Ace makes it happen.
 
