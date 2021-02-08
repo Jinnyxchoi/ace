@@ -107,6 +107,7 @@ const syncDb = () => db.sync()
 console.log('passing 5')
 
 async function bootApp() {
+  console.log('booting app')
   await sessionStore.sync()
   console.log('passing after sessionStore')
   await syncDb()
