@@ -145,8 +145,8 @@ img {
 }
 .main-description {
   font-size: x-large;
-  padding: 0px 100px 0px 100px;
-  margin: 50px 80px;
+  padding: 1vw 7vw;
+  margin: 1vw 7vw;
 }
 
 button {
@@ -168,7 +168,8 @@ button {
   width: 600px;
 }
 .quotes {
-  margin: 0 250px;
+  padding: 1vw 7vw;
+  margin: 1vw 7vw;
 }
 #demo {
   height: fit-content;

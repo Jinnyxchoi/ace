@@ -5,13 +5,11 @@ import UpcomingEvent from './UpcomingEvent'
 
 class Upcoming extends React.Component {
   componentDidMount() {
-    console.log('going into upcoming')
     this.props.fetch(this.props.userID)
   }
 
   render() {
     const eventDetails = this.props.eventDetails
-    console.log('eventDetails,', eventDetails)
 
     return (
       <div className="upcoming">

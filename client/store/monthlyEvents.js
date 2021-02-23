@@ -38,7 +38,6 @@ export const fetchAllEvents = (date, userId) => {
 export const postEventThunk = (eventObj, currentMonth) => {
   return async dispatch => {
     try {
-      console.log('eventObj', eventObj.userId)
       await axios.post(`/api/event`, eventObj)
 
       const {data} = await axios.get(
