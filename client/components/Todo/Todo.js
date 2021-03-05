@@ -28,7 +28,6 @@ export class Todo extends Component {
     this.setState({
       buttonClicked: false
     })
-    console.log('this is id', this.props.user.id)
     this.props.postList(name, description, this.props.user.id)
   }
   // handleSubmit(evt) {

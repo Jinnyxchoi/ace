@@ -27,7 +27,6 @@ export const fetchAllEvents = (date, userId) => {
           hash[dayNumber] = true
         }
       }
-      console.log('hash', hash)
       dispatch(getAllEvents(hash))
     } catch (error) {
       console.log('there was an error in fetchAllEvents')

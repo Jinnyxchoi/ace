@@ -33,20 +33,12 @@ export class SingleViewTodo extends Component {
     this.setState({
       buttonClicked: false
     })
-    console.log(
-      'this.props.match.params.listId',
-      this.props.match.params.listId
-    )
+
     this.props.postTask(this.props.match.params.listId, task)
   }
-  // handleCheckbox(evt) {
-  //   evt.preventDefault()
-  //   console.log('clicked')
-  // this.props.updateComplete(this.props.match.params.listId, )
-  // }
+
   render() {
     const singleTodo = this.props.singleTodo
-    console.log('singleTodo', singleTodo)
     const listItems = singleTodo.listItems || []
     return (
       <div className="container">

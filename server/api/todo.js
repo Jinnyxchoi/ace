@@ -70,7 +70,6 @@ router.post('/:id', async (req, res, next) => {
 })
 router.put('/:listid/:taskid', async (req, res, next) => {
   try {
-    console.log('req.body', req.body)
     const task = await ListItem.findOne({
       where: {
         id: +req.params.taskid,

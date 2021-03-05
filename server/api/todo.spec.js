@@ -20,7 +20,6 @@ describe('List Routes', () => {
   })
   it('GET /api/todo', async () => {
     const res = await agent.get('/api/todo/1').expect(200)
-    console.log('LOOK', res.body)
     expect(res.body).to.be.an('object')
     expect(res.body.description).to.equal(
       'Remember to get these items at the market.'

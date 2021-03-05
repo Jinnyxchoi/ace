@@ -35,7 +35,6 @@ export const fetchAllEventDetails = userId => {
     try {
       const {data} = await axios.get(`/api/event/all/${userId}`)
 
-      console.log('data', data)
       await data.sort((a, b) => a.eventDate - b.eventDate)
 
       dispatch(getAllEventDetails(data))

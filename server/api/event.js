@@ -19,7 +19,6 @@ router.get('/all/:userID', async (req, res, next) => {
 
 router.get('/:month/:userID', async (req, res, next) => {
   try {
-    console.log('going in to api')
     const startDate = new Date(2021, req.params.month, 1)
     const endDate = new Date(2021, req.params.month, 31)
 

@@ -39,7 +39,6 @@ export const newListThunk = (name, description, userId) => {
       }
 
       const {data} = await axios.post('/api/todo', obj)
-      console.log('data', data)
       dispatch(getNewList(data))
     } catch (error) {
       console.log('there was an error in fetchCampuses')
