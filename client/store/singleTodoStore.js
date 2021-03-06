@@ -98,14 +98,3 @@ export default function(state = initialState, action) {
       return state
   }
 }
-
-// {
-//   ...state,
-//   listItems: state.listItems.map((list) => {
-//     if (list.id === action.list.id) {
-//       return {...list, completed: action.list.completed}
-//     }else{
-//       return list
-//     }
-//   }),
-// }

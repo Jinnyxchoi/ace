@@ -16,7 +16,7 @@ let initialState = []
  */
 const getNewList = newList => ({type: POST_NEW_LIST, newList})
 
-const setLists = lists => ({
+export const setLists = lists => ({
   type: SET_LISTS,
   lists
 })
@@ -59,7 +59,6 @@ export const fetchLists = userID => {
 export const deleteListThunk = listID => {
   return async dispatch => {
     try {
-      console.log('inside delete thunk')
       await axios.delete(`/api/todo/lists/${listID}`)
       dispatch(deleteList(listID))
     } catch (error) {
