@@ -47,29 +47,6 @@ class Calendar extends React.Component {
     return firstDay
   }
 
-  // onPrev = () => {
-  //   let curr = ''
-  //   if (this.state.showMonthTable == true) {
-  //     curr = 'year'
-  //   } else {
-  //     curr = 'month'
-  //   }
-  //   this.setState({
-  //     dateObject: this.state.dateObject.subtract(1, curr),
-  //   })
-  // }
-  // onNext = () => {
-  //   let curr = ''
-  //   if (this.state.showMonthTable == true) {
-  //     curr = 'year'
-  //   } else {
-  //     curr = 'month'
-  //   }
-  //   this.setState({
-  //     dateObject: this.state.dateObject.add(1, curr),
-  //   })
-  // }
-
   onDayClick = (e, d) => {
     this.setState(
       {
@@ -124,7 +101,6 @@ class Calendar extends React.Component {
         cells.push(row)
       }
       if (i === totalSlots.length - 1) {
-        // let insertRow = cells.slice();
         rows.push(cells)
       }
     })
