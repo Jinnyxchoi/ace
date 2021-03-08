@@ -11,8 +11,8 @@ Ace is more than just a project management tool — it’s a better way to work.
 
 2.  `npm install` to download project dependencies.
 
-3.  Create a database named `ace` and run `npm seed` to seed it.
+3.  Create a database named `ace` and run `npm run seed-dev` to seed it.
 
 4.  Running `npm run start-dev` will allow you to view the site on your local machine.
 
-5.  `npm test` to run unit tests. Additionally, you will need to create a database named `ace-test` that the unit tests will use.
+5.  `npm run test` to run unit tests. Additionally, you will need to create a database named `ace-test` that the unit tests will use.
