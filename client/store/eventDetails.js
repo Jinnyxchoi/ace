@@ -16,12 +16,11 @@ const getNewEvent = event => ({
 })
 
 export const postUpcoming = obj => {
-  return async dispatch => {
+  return dispatch => {
     try {
       const newObj = {
         event: obj.event,
-        eventDate: obj.eventDate,
-        id: 100
+        eventDate: obj.eventDate
       }
       dispatch(getNewEvent(newObj))
     } catch (error) {

@@ -16,8 +16,8 @@ class Upcoming extends React.Component {
         <h4>Your Events</h4>
         {eventDetails.length > 0 ? (
           <div>
-            {eventDetails.map(each => (
-              <UpcomingEvent key={each.id} event={each} />
+            {eventDetails.map((each, i) => (
+              <UpcomingEvent key={i} event={each} />
             ))}
           </div>
         ) : (
