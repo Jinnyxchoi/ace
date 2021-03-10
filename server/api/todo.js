@@ -60,6 +60,7 @@ router.post('/:id', async (req, res, next) => {
     next(error)
   }
 })
+//generally a good idea to go from general to specific routes
 router.put('/:listid/:taskid', async (req, res, next) => {
   try {
     const task = await ListItem.findOne({
