@@ -49,7 +49,6 @@ export const postTaskThunk = (listID, task) => {
         listId: listID
       }
       const {data} = await axios.post(`/api/todo/${listID}`, task)
-      console.log('DATA', data)
       dispatch(postTask(data))
     } catch (error) {
       console.log('there was an error in postTaskThunk')

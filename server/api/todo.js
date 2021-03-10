@@ -55,14 +55,6 @@ router.post('/', async (req, res, next) => {
 router.post('/:id', async (req, res, next) => {
   try {
     const newTask = await ListItem.create(req.body)
-    // const list = await List.findOne({
-    //   where: {
-    //     id: +req.params.id
-    //   },
-    //   include: {
-    //     model: ListItem
-    //   }
-    // })
     res.json(newTask)
   } catch (error) {
     next(error)
