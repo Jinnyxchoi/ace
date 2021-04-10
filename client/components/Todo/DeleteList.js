@@ -10,7 +10,6 @@ class DeleteList extends Component {
 
   handleClick(evt) {
     evt.preventDefault()
-    console.log('clicked!')
     this.props.deleteList(this.props.id)
   }
   render() {

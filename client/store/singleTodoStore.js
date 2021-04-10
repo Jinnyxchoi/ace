@@ -60,7 +60,6 @@ export const updateCompletedThunk = (listID, taskID, complete) => {
   return async dispatch => {
     try {
       const {data} = await axios.put(`/api/todo/${listID}/${taskID}`, complete)
-      console.log('DATA', data)
       dispatch(completed(data))
     } catch (error) {
       console.log('there was an error in postTaskThunk')
