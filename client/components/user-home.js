@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Todo} from './index'
 import Calendar from './Calendar/Calendar'
+import {MoodMap} from './MoodMap/MoodMap'
 /**
  * COMPONENT
  */
@@ -13,6 +14,7 @@ export const UserHome = props => {
       <h3>Welcome, {email}</h3>
       <Todo />
       <Calendar />
+      <MoodMap />
     </div>
   )
 }

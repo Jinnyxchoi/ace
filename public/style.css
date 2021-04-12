@@ -243,7 +243,22 @@ button {
 .calendar-buttons button {
   margin: 20px;
 }
+.react-calendar-heatmap {
+  width: 1000px;
+  height: 250px;
+  /* padding: 50px; */
+}
 
+.calendar-heatmap {
+  display: flex row;
+  justify-content: center;
+  align-items: center;
+}
+
+.heatmap-component {
+  display: flex;
+  justify-content: space-evenly;
+}
 .un-tasked {
   color: white;
   margin: 0;
